@@ -7,8 +7,8 @@ export class MediaChapter {
     @Field(() => String)
     chapterId: String;
 
-    @Field(() => String)
-    name: string;
+    @Field(() => String, { nullable: true })
+    name?: string;
 
     @Field(() => Int)
     chapterCount: number;

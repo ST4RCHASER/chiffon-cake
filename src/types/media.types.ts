@@ -6,9 +6,20 @@ export enum MediaType {
     NOVEL = "NOVEL",
 }
 
+export enum MediaStatus {
+    COMPLETED = "COMPLETED",
+    ONGOING = "ONGOING",
+    UNKNOWN = "UNKNOWN",
+}
+
 registerEnumType(MediaType, {
     name: "MediaType",
     description: "The type of media",
+});
+
+registerEnumType(MediaStatus, {
+    name: "MediaStatus",
+    description: "The status of media",
 });
 
 @ObjectType()
@@ -20,8 +31,8 @@ export class IndexMedia {
     @Field(() => String)
     mediaId: string;
 
-    @Field(() => String)
-    title: string;
+    @Field(() => String, { nullable: true })
+    title?: string;
 
     @Field(() => [String])
     otherTitles: string[];
@@ -29,8 +40,8 @@ export class IndexMedia {
     @Field(() => [String])
     tags: string[];
 
-    @Field(() => String)
-    thumbnail: string;
+    @Field(() => String, { nullable: true })
+    thumbnail?: string;
 
     @Field(() => Int)
     year: number;
@@ -39,7 +50,7 @@ export class IndexMedia {
     lastUpdated: Date;
 
     @Field(() => String)
-    status: string;
+    status: MediaStatus;
 
     @Field(() => Int)
     totalChapters: number;
@@ -73,23 +84,23 @@ export class Media {
     @Field(() => Date)
     lastUpdated: Date;
 
-    @Field(() => String)
-    title: string;
+    @Field(() => String, { nullable: true })
+    title?: string;
 
     @Field(() => [String])
     otherTitles: string[];
 
     @Field(() => String)
-    status: string;
+    status: MediaStatus;
 
-    @Field(() => String)
-    description: string;
+    @Field(() => String, { nullable: true })
+    description?: string;
 
     @Field(() => Int)
     year: number;
 
-    @Field(() => String)
-    thumbnail: string;
+    @Field(() => String, { nullable: true })
+    thumbnail?: string;
 
     @Field(() => String)
     writer: string;
@@ -100,6 +111,6 @@ export class Media {
     @Field(() => [String])
     tags: string[];
 
-    @Field(() => String)
-    publisher: string;
+    @Field(() => String, { nullable: true })
+    publisher?: string;
 }
